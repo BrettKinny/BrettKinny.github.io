@@ -7,7 +7,7 @@ layout: post.njk
 
 This is my personal blog. I built it with Eleventy, a static site generator that spits out plain HTML files. No database, no server-side code, no complexity. Just markdown files that become web pages.
 
-I went with a terminal-inspired design because I like how it looks. Monospace fonts, dark colors, clean lines. It's minimal on purpose. No tracking, no analytics, no cookies, no bullshit. The site loads fast because there's nothing to load.
+I went with a minimal textual design because I like how it looks. Clean lines, nothing flashy. It's minimal on purpose. No tracking, no analytics, no cookies, no bullshit. The site loads fast because there's nothing to load.
 
 Static sites have been around forever, but they're having a moment again. The appeal is obvious: they're fast, secure, cheap to host, and simple to deploy. Write some content, build the site, push to GitHub Pages or Netlify, and you're done. No maintaining servers, no worrying about database security, no scaling problems.
 
