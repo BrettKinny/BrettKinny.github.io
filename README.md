@@ -1,15 +1,13 @@
 # Brett Kinny's Developer Blog
 
-A minimal, TUI-inspired personal developer blog built with [Eleventy (11ty)](https://www.11ty.dev/).
+A minimal personal developer blog built with [Eleventy (11ty)](https://www.11ty.dev/).
 
 ## Design Philosophy
 
-This blog embraces a **Terminal User Interface (TUI)** aesthetic - think command-line interfaces and terminal windows, but refined and minimal. The design features:
+This blog embraces a **minimal aesthetic** - clean, focused, and distraction-free. The design features:
 
-- Monospace fonts throughout
-- Dark, low-contrast color scheme
-- Terminal-style prefixes (`$`, `#`, `>`)
-- Clean borders and structured layouts
+- Simple, readable typography
+- Clean layouts with plenty of whitespace
 - No JavaScript, no tracking, no bloat
 
 ## Development
