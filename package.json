@@ -1,0 +1,16 @@
+{
+  "name": "brettkinny.github.io",
+  "version": "1.0.0",
+  "description": "Personal developer blog",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "keywords": ["blog", "eleventy", "personal"],
+  "author": "Brett Kinny",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
