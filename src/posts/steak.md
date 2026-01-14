@@ -23,4 +23,4 @@ I'm going to make an argument for cooking steak in an air fryer.
 8. You may or may not flip it.
 9. Cook it for probably another four minutes.
 10. If it's a thick steak, maybe give it another two minutes a side.
-11. If it's a thin steak, it's probably ready to rock, brother.
+11. If it's a thin steak, it's probably ready to rock.
