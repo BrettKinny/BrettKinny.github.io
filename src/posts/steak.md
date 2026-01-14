@@ -1,6 +1,6 @@
 ---
-title: "Steak"
-description: "A case for cooking steak in an air fryer"
+title: "A case for cooking steak in an air fryer"
+description: "No one believes me but I'm right"
 date: 2026-01-14
 layout: post.njk
 ---
