@@ -2,15 +2,15 @@
 layout: base.njk
 ---
 
-<a href="/" class="back-link">back to home</a>
-
 <article class="post">
   <header class="post-header">
     <h2>{{ title }}</h2>
     <p class="post-date">{{ date | readableDate }}</p>
   </header>
-  
+
   <div class="post-content">
     {{ content | safe }}
   </div>
 </article>
+
+<p><a href="/" class="back-link">← back</a></p>
