@@ -37,6 +37,10 @@ header p {
   color: #666;
 }
 
+.tagline {
+  margin-top: 4px;
+}
+
 /* Navigation */
 nav {
   margin-top: 12px;
