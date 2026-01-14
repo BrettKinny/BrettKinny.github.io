@@ -11,6 +11,11 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // Add year filter
+  eleventyConfig.addFilter("year", dateObj => {
+    return new Date(dateObj).getFullYear();
+  });
+
   // Add collection for blog posts
   eleventyConfig.addCollection("posts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/posts/*.md").sort((a, b) => {
