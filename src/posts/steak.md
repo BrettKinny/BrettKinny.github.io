@@ -7,6 +7,12 @@ layout: post.njk
 
 I'm going to make an argument for cooking steak in an air fryer.
 
+## Requirements
+
+- You know how to cook a fuckin' steak.
+
+## Steps
+
 1. Turn the air fryer up as hot as possible.
 2. Put it on for 10 minutes to preheat.
 3. Get a steak out. Doesn't matter if it's frozen. Whatever.
