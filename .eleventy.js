@@ -1,3 +1,5 @@
+const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
+
 module.exports = function(eleventyConfig) {
   // Copy CSS files to output
   eleventyConfig.addPassthroughCopy("src/css");
@@ -21,6 +23,25 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/posts/*.md").sort((a, b) => {
       return b.date - a.date; // Sort by date descending
     });
+  });
+
+  // Add RSS feed plugin
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "rss",
+    outputPath: "/feed.xml",
+    collection: {
+      name: "posts",
+      limit: 10
+    },
+    metadata: {
+      language: "en",
+      title: "Brett Kinny Weblog",
+      subtitle: "Developer thoughts.",
+      base: "https://brettkinny.github.io/",
+      author: {
+        name: "Brett Kinny"
+      }
+    }
   });
 
   return {
