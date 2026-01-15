@@ -192,6 +192,15 @@ footer {
   font-size: 13px;
 }
 
+footer p {
+  margin: 0;
+}
+
+footer .disclaimer {
+  margin-top: 8px;
+  font-style: italic;
+}
+
 /* Back link */
 .back-link {
   display: inline-block;
