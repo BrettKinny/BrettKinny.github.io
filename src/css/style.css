@@ -192,6 +192,16 @@ footer {
   font-size: 13px;
 }
 
+footer .rss-link {
+  color: #999;
+  text-decoration: none;
+}
+
+footer .rss-link:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
 /* Back link */
 .back-link {
   display: inline-block;

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if title and title != "Home" %}{{ title }} - {% endif %}Brett Kinny</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Brett Kinny Weblog" href="/feed.xml">
 </head>
 <body>
   <header>
@@ -17,7 +18,7 @@
   </main>
 
   <footer>
-    &copy; {{ page.date.getFullYear() }}
+    &copy; {{ page.date.getFullYear() }} &middot; <a href="/feed.xml" class="rss-link">RSS</a>
   </footer>
 </body>
 </html>
