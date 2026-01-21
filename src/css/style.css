@@ -193,13 +193,15 @@ footer {
 }
 
 footer .rss-link,
-footer .linkedin-link {
+footer .linkedin-link,
+footer .github-link {
   color: #999;
   text-decoration: none;
 }
 
 footer .rss-link:hover,
-footer .linkedin-link:hover {
+footer .linkedin-link:hover,
+footer .github-link:hover {
   color: #0066cc;
   text-decoration: underline;
 }
