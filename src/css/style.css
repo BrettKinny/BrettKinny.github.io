@@ -192,12 +192,14 @@ footer {
   font-size: 13px;
 }
 
-footer .rss-link {
+footer .rss-link,
+footer .linkedin-link {
   color: #999;
   text-decoration: none;
 }
 
-footer .rss-link:hover {
+footer .rss-link:hover,
+footer .linkedin-link:hover {
   color: #0066cc;
   text-decoration: underline;
 }
