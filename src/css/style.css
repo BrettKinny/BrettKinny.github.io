@@ -183,47 +183,6 @@ a:hover {
   color: #666;
 }
 
-/* Follow Section */
-.follow-section {
-  margin-top: 48px;
-  padding: 24px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.follow-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  color: #1a1a1a;
-  background: #fff;
-  transition: all 0.2s ease;
-}
-
-.follow-btn:hover {
-  text-decoration: none;
-  border-color: #0066cc;
-  color: #0066cc;
-}
-
-.github-btn:hover {
-  border-color: #333;
-  color: #333;
-  background: #f5f5f5;
-}
-
-.linkedin-btn:hover {
-  border-color: #0077b5;
-  color: #0077b5;
-}
-
 /* Footer */
 footer {
   margin-top: 48px;
@@ -236,18 +195,25 @@ footer {
   align-items: center;
 }
 
-footer .rss-link,
-footer .linkedin-link,
-footer .github-link {
-  color: #999;
-  text-decoration: none;
+.footer-links {
+  display: flex;
+  gap: 8px;
 }
 
-footer .rss-link:hover,
-footer .linkedin-link:hover,
-footer .github-link:hover {
-  color: #0066cc;
-  text-decoration: underline;
+.footer-btn {
+  padding: 4px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.footer-btn:hover {
+  text-decoration: none;
+  border-color: #999;
+  color: #333;
 }
 
 /* Back link */

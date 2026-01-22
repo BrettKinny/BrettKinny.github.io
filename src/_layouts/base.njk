@@ -17,13 +17,12 @@
     {{ content | safe }}
   </main>
 
-  <section class="follow-section">
-    <a href="https://github.com/BrettKinny" class="follow-btn github-btn">Follow on GitHub</a>
-    <a href="https://www.linkedin.com/in/brett-kinny/" class="follow-btn linkedin-btn">Connect on LinkedIn</a>
-  </section>
-
   <footer>
-    <span class="footer-links"><a href="https://www.linkedin.com/in/brett-kinny/" class="linkedin-link">LinkedIn</a> &middot; <a href="https://github.com/BrettKinny" class="github-link">GitHub</a> &middot; <a href="/feed.xml" class="rss-link">RSS</a></span>
+    <span class="footer-links">
+      <a href="https://github.com/BrettKinny" class="footer-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/brett-kinny/" class="footer-btn">LinkedIn</a>
+      <a href="/feed.xml" class="footer-btn">RSS</a>
+    </span>
     <span class="footer-copyright">&copy; {{ page.date.getFullYear() }}</span>
   </footer>
 </body>
