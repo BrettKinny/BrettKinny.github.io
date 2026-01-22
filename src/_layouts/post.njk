@@ -8,9 +8,50 @@ layout: base.njk
     <p class="post-date">{{ date | readableDate }}</p>
   </header>
 
+  <nav class="heading-nav" aria-label="Article sections"></nav>
+
   <div class="post-content">
     {{ content | safe }}
   </div>
 </article>
 
 <p><a href="/" class="back-link">← back</a></p>
+
+<script>
+(function() {
+  const content = document.querySelector('.post-content');
+  const nav = document.querySelector('.heading-nav');
+  const headings = content.querySelectorAll('h2, h3');
+
+  if (headings.length === 0) {
+    nav.style.display = 'none';
+    return;
+  }
+
+  const links = [];
+  headings.forEach(function(heading, index) {
+    // Create an ID if the heading doesn't have one
+    if (!heading.id) {
+      heading.id = heading.textContent
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    }
+
+    const link = document.createElement('a');
+    link.href = '#' + heading.id;
+    link.textContent = heading.textContent;
+    links.push(link);
+  });
+
+  links.forEach(function(link, index) {
+    nav.appendChild(link);
+    if (index < links.length - 1) {
+      const dot = document.createElement('span');
+      dot.className = 'heading-nav-dot';
+      dot.textContent = '·';
+      nav.appendChild(dot);
+    }
+  });
+})();
+</script>
