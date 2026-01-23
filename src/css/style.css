@@ -136,6 +136,29 @@ a:hover {
   margin: 0;
 }
 
+/* Heading navigation */
+.heading-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.heading-nav a {
+  color: #666;
+  text-decoration: none;
+}
+
+.heading-nav a:hover {
+  color: #0066cc;
+}
+
+.heading-nav-dot {
+  color: #ccc;
+}
+
 .post-content {
   margin-top: 24px;
 }
