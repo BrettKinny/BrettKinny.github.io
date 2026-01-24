@@ -232,12 +232,7 @@ footer .github-link:hover {
   text-decoration: underline;
 }
 
-footer p {
-  margin: 0;
-}
-
 footer .disclaimer {
-  margin-top: 8px;
   font-style: italic;
 }
 
