@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if title and title != "Home" %}{{ title }} - {% endif %}Brett Kinny</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Brett Kinny Weblog" href="/feed.xml">
 </head>
 <body>
   <header>
-    <h1><a href="/">Brett Kinny Weblog</a></h1>
-    <p class="tagline">Developer thoughts.</p>
+    <h1><a href="/">Brett Kinny's Weblog</a></h1>
+    <p class="tagline">Nerd shit.</p>
   </header>
 
   <main>
@@ -17,7 +18,8 @@
   </main>
 
   <footer>
-    <p>&copy; {{ page.date.getFullYear() }}</p>
+    <span class="footer-links"><a href="https://www.linkedin.com/in/brett-kinny/" class="linkedin-link">LinkedIn</a> &middot; <a href="https://github.com/BrettKinny" class="github-link">GitHub</a> &middot; <a href="/feed.xml" class="rss-link">RSS</a></span>
+    <span class="footer-copyright">&copy; {{ page.date.getFullYear() }}</span>
     <p class="disclaimer">Written by hand, mostly.</p>
   </footer>
 </body>
