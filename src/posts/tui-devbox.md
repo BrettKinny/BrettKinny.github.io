@@ -7,6 +7,8 @@ layout: post.njk
 
 *Or how Claude made me stop worrying and love the terminal.*
 
+![Claude Code running on an iPad](/images/claude-ipad.png)
+
 It's 2026 and there's a new UI on the block. Forget React, Angular, Flutter, React Native, MAUI, Electron, SwiftUI... the next bandwagon to jump on is the oldest of them all—the terminal.
 
 I for one am 100% onboard with this trend, and am systematically working towards replacing every piece of software in my life with a TUI. I've been trying to improve my keyboard-only chops slowly for years, and I hate many modern web apps and UIs. Just give me the terminal. Strap me in, and plug me straight into the matrix.
