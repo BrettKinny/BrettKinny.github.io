@@ -1,5 +1,5 @@
 ---
-title: "This blog"
+title: "Colophon"
 description: "What this blog is about and how it's built"
 date: 2026-01-05
 layout: post.njk
