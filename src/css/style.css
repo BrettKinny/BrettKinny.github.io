@@ -209,6 +209,13 @@ a:hover {
   padding: 0;
 }
 
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
 .post-content blockquote {
   border-left: 2px solid #ddd;
   padding-left: 16px;

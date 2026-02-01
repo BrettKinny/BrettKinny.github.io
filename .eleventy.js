@@ -1,8 +1,9 @@
 const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
-  // Copy CSS files to output
+  // Copy static assets to output
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/images");
   
   // Add date filter for posts
   eleventyConfig.addFilter("readableDate", dateObj => {
