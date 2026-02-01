@@ -23,7 +23,7 @@ layout: base.njk
 (function() {
   const content = document.querySelector('.post-content');
   const nav = document.querySelector('.heading-nav');
-  const headings = content.querySelectorAll('h2, h3');
+  const headings = content.querySelectorAll('h2');
 
   if (headings.length === 0) {
     nav.style.display = 'none';
