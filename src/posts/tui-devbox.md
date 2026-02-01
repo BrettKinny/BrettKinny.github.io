@@ -51,8 +51,8 @@ I started with `ubuntu:24.04`. I could probably optimise this, but I wanted some
 
 ### CLI Tools
 
-| Tool | Language | What It Replaces | GitHub |
-|------|----------|-----------------|--------|
+| Tool | Language | What It Replaces | Description |
+|------|----------|------------------|-------------|
 | [fd](https://github.com/sharkdp/fd) | Rust | `find` | Fast, user-friendly alternative |
 | [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) | Rust | `grep` | Blazingly fast recursive search |
 | [bat](https://github.com/sharkdp/bat) | Rust | `cat` | Syntax highlighting and git integration |
@@ -69,8 +69,8 @@ You'll notice the Rust renaissance here. Basically every classic Unix tool is ge
 
 ### TUI Tools
 
-| Tool | Language | Description | GitHub |
-|------|----------|-------------|--------|
+| Tool | Language | Description |
+|------|----------|-------------|
 | [zellij](https://github.com/zellij-org/zellij) | Rust | Terminal multiplexer (tmux alternative) |
 | [lazygit](https://github.com/jesseduffield/lazygit) | Go | Terminal UI for git |
 | [superfile (spf)](https://github.com/yorukot/superfile) | Go | Terminal file manager |
