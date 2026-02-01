@@ -221,12 +221,4 @@ The Dockerfile is a starting point. Use Claude or Gemini to refine it for your n
 - Maybe go back to tmux or [GNU Screen](https://www.gnu.org/software/screen/) once I properly understand multiplexers
 - Add [Open Code](https://github.com/opencode-ai/opencode) as another AI coding option
 
----
-
-## Wrapping Up
-
-So, I knew what I wanted, and I knew what to do. Sit down with Claude and Gemini and iterate until this thing was humming. It took 27 iterations of the Dockerfile to get here. There were 10+ weird dependency issues that I resolved through pure vibe coding, pasting error logs into the LLM and following instructions until things stopped breaking.
-
-This took a lot more time to get right (and to write this blog post about) than I initially expected. But now I've got a portable, reproducible, disposable development environment that I can access from an iPad on the couch, and Claude can go absolutely ham inside it without risking anything important.
-
 If you build your own version, I'd love to see it. Get in touch. 👊
