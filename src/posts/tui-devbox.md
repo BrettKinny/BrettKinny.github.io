@@ -79,7 +79,7 @@ You'll notice the Rust renaissance here. Basically every classic Unix tool is ge
 
 ---
 
-## How It Fits Together
+## How It Works
 
 The *why* matters more than the Dockerfile itself.
 
@@ -127,10 +127,6 @@ Working on a Node project? Install Node. .NET? Install the SDK. The devbox gives
 - claude-yolo → claude --dangerously-skip-permissions
 - lg → lazygit
 ```
-
----
-
-## The Tricky Bits
 
 ### YOLO Mode Needs a Non-Root User
 
@@ -195,9 +191,9 @@ SSH into the VPS, type `devbox`, and I'm in. Two keystrokes from anywhere to a f
 
 ---
 
-## Get It
+## Wrapping Up
 
-The full Dockerfile, CLAUDE.md, and lazygit config are in a gist:
+The full Dockerfile, CLAUDE.md, and lazygit config are in a [gist](https://gist.github.com/BrettKinny/ad8d36a6afee8b32b1ddf482496ffa02).
 
 ```bash
 git clone https://gist.github.com/BrettKinny/ad8d36a6afee8b32b1ddf482496ffa02 devbox
@@ -217,24 +213,12 @@ docker start -ai devbox
 
 Clone your repos into `/workspace`, authenticate with `gh auth login` and `claude auth`, and you're off.
 
----
+It took 27 iterations of the Dockerfile to get here. There were 10+ weird dependency issues that I resolved through pure vibe coding, pasting error logs into the LLM and following instructions until things stopped breaking. This took a lot more time to get right (and to write this blog post about) than I initially expected. But now I've got a portable, reproducible, disposable development environment that I can access from an iPad on the couch, and Claude can go absolutely ham inside it without risking anything important.
 
-## What's Next
-
-The Dockerfile is a starting point. Use Claude or Gemini to refine it for your needs. Gemini is particularly good at long-running conversations where you're copy-pasting whole scripts back and forth.
-
-Things I want to explore:
+The Dockerfile is a starting point. Use Claude or Gemini to refine it for your needs. Things I want to explore next:
 
 - Swap [superfile](https://github.com/yorukot/superfile) for [yazi](https://github.com/sxyazi/yazi) (Rust-based, reportedly faster)
 - Maybe go back to tmux or [GNU Screen](https://www.gnu.org/software/screen/) once I properly understand multiplexers
 - Add [Open Code](https://github.com/opencode-ai/opencode) as another AI coding option
-
----
-
-## Wrapping Up
-
-So, I knew what I wanted, and I knew what to do. Sit down with Claude and Gemini and iterate until this thing was humming. It took 27 iterations of the Dockerfile to get here. There were 10+ weird dependency issues that I resolved through pure vibe coding, pasting error logs into the LLM and following instructions until things stopped breaking.
-
-This took a lot more time to get right (and to write this blog post about) than I initially expected. But now I've got a portable, reproducible, disposable development environment that I can access from an iPad on the couch, and Claude can go absolutely ham inside it without risking anything important.
 
 If you build your own version, I'd love to see it. Get in touch. 👊
