@@ -1,5 +1,5 @@
 ---
-title: "Building a TUI Devbox"
+title: "Building a TUI Devbox: A Claude-Powered Terminal Dev Environment running on an iPad"
 description: "How I built a portable, reproducible Docker-based terminal development environment packed with modern CLI and TUI tools, designed for Claude Code YOLO mode running from an iPad"
 date: 2026-01-28
 layout: post.njk
