@@ -37,7 +37,7 @@ Three reasons:
 
 **Keeps the host clean.** The container holds the tools. Your projects live outside the container. Blow away the container whenever you want and your work survives. This is the key mental model: the devbox is disposable, the code is not.
 
-**AI loves it.** Here's something that took me a while to properly appreciate: Claude, Gemini, Codex... they can read terminal output like it's their first spoken language. Long error logs, dependency conflicts, build failures, just paste the output and the AI will parse it and suggest the next step. An isolated container means you can let the AI go wild without worrying about it hosing your system.
+**AI loves it.** Claude, Gemini, Codex... they read terminal output natively. Error logs, dependency conflicts, build failures - paste it in and the AI figures it out. An isolated container means you can let it go wild without worrying about it hosing your system.
 
 ---
 
@@ -80,17 +80,17 @@ You'll notice the Rust renaissance here. Basically every classic Unix tool is ge
 
 ---
 
-## My Thinking, Step by Step
+## How It Fits Together
 
-Let me walk through the logic behind the build, because I think the *why* is more useful than just handing you a Dockerfile.
+The *why* matters more than the Dockerfile itself.
 
-### Give Claude Access to Modern CLI Power
+### Give Claude Better Tools
 
-The whole point of this devbox is to pair Claude Code with the best terminal tools available. When Claude has access to `ripgrep` instead of `grep`, `fd` instead of `find`, and `bat` instead of `cat`, it writes better commands. It gets syntax-highlighted output. It can parse structured data with `jq` and `yq`. You're giving it a sharper set of knives.
+When Claude has `ripgrep` instead of `grep`, `fd` instead of `find`, and `bat` instead of `cat`, it writes better commands. It gets syntax-highlighted output. It can parse structured data with `jq` and `yq`. Better tools in, better results out.
 
-### Separate the Container from the Code
+### Mount Your Code, Don't Copy It
 
-This is the most important architectural decision. Your projects live on the host (or in persistent storage), mounted into the container:
+Your projects live on the host, mounted into the container:
 
 ```bash
 docker run -it --name devbox \
@@ -98,15 +98,15 @@ docker run -it --name devbox \
   devbox /bin/bash
 ```
 
-The container is the workshop. The `/workspace` mount is where the actual work lives. You can nuke and rebuild the container any time (new tools, different versions, start fresh) and your project files don't care.
+Nuke and rebuild the container any time. Your project files don't care.
 
-### BYO SDK
+### No Runtimes Baked In
 
-The container is intentionally minimal on language runtimes. Mount your project folder and install what you need for that specific project. Working on a Node project? Install Node. .NET project? Install the SDK. The devbox gives you the *environment*, not the *stack*.
+Working on a Node project? Install Node. .NET? Install the SDK. The devbox gives you the *environment*, not the *stack*.
 
-### The CLAUDE.md File
+### Tell Claude What's Installed
 
-[Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) reads a `CLAUDE.md` file for project context. I put one at `~/.claude/CLAUDE.md` with a list of all the CLI tools available in the container: their names, what they do, and the aliases I've set up. This means Claude knows it can use `rg` instead of `grep`, `fd` instead of `find`, and so on. Small thing, big difference.
+[Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) reads a `CLAUDE.md` file for project context. I put one at `~/.claude/CLAUDE.md` listing all the CLI tools in the container, what they do, and the aliases I've set up. Now Claude reaches for `rg` instead of `grep`, `fd` instead of `find`, and so on.
 
 ```markdown
 # Devbox Environment
@@ -133,9 +133,9 @@ The container is intentionally minimal on language runtimes. Mount your project 
 
 ## The Tricky Bits
 
-### Running Claude in YOLO Mode
+### YOLO Mode Needs a Non-Root User
 
-Claude Code has a `--dangerously-skip-permissions` flag that lets it run commands without asking for confirmation. Essential for flow state. But it only works when running as a non-root user. The Dockerfile creates a `dev` user specifically for this:
+Claude Code has a `--dangerously-skip-permissions` flag that lets it run commands without asking you first. Only works as a non-root user, so the Dockerfile creates a `dev` user for this:
 
 ```bash
 alias claude-yolo='claude --dangerously-skip-permissions'
@@ -145,9 +145,9 @@ YOLO mode on an iPad. What a time to be alive.
 
 **Disclaimer:** I don't know if this environment will enhance Claude Code's performance (speed-wise, probably negligible) or harm it (because these tools might not be in the training data). It works great for me either way.
 
-### Authentication Lives Outside
+### Keep Secrets on the Host
 
-Your `.gitconfig`, SSH keys, and GitHub auth tokens should live on the host, not baked into the container. Mount them read-only:
+`.gitconfig`, SSH keys, and GitHub auth tokens live on the host, not in the container. Mount them read-only:
 
 ```bash
 docker run -it --name devbox \
@@ -164,21 +164,21 @@ gh auth login
 claude auth
 ```
 
-This way you don't accidentally commit credentials to a Docker image, and your auth survives container rebuilds.
+No credentials baked into the image, and auth survives container rebuilds.
 
-### Oh My Posh and Fira Code
+### Make the Prompt Useful (and Pretty)
 
-[Oh My Posh](https://ohmyposh.dev/) gives you a prompt that actually tells you useful things like git branch, exit codes, and execution time. It makes the terminal feel alive. Pair it with [Fira Code](https://github.com/tonsky/FiraCode) (a monospaced font with programming ligatures) in your terminal app for the full effect. Yes, aesthetics matter. If you're going to live in the terminal, make it look good.
+[Oh My Posh](https://ohmyposh.dev/) gives you a prompt that shows git branch, exit codes, and execution time. Pair it with [Fira Code](https://github.com/tonsky/FiraCode) in your terminal app. If you're going to live in the terminal, make it look good.
 
-### Zellij vs Tmux
+### Zellij Over Tmux (Fight Me)
 
-[Zellij](https://github.com/zellij-org/zellij) is in the devbox as the terminal multiplexer. For the uninitiated: a multiplexer lets you split your terminal into panes, run multiple sessions, and, crucially, detach and reattach. If your SSH connection drops, your work keeps running.
+[Zellij](https://github.com/zellij-org/zellij) is the terminal multiplexer. A multiplexer lets you split your terminal into panes, run multiple sessions, and detach/reattach. SSH drops? Your work keeps running.
 
-I started with [tmux](https://github.com/tmux/tmux) because that's what everyone recommends. I'm starting to understand why multiplexers make sense, and I'm still working through the keybindings. Zellij won me over because it shows you the keybindings at the bottom of the screen, which is very helpful when you're learning. Tmux people will tell me I'm wrong. That's fine.
+I started with [tmux](https://github.com/tmux/tmux) because that's what everyone recommends. Zellij won me over because it shows you the keybindings at the bottom of the screen. Tmux people will tell me I'm wrong. That's fine.
 
-### iPad Terminal Apps
+### Blink Shell on iPad
 
-I use [Blink Shell](https://blink.sh/). It's the best option, but not without quirks:
+[Blink Shell](https://blink.sh/) is the best option, but not without quirks:
 
 - Touchscreen text selection works fine
 - No touchscreen scrolling though, so use keyboard shortcuts
@@ -187,13 +187,13 @@ I use [Blink Shell](https://blink.sh/). It's the best option, but not without qu
 
 **Mosh vs SSH:** [Mosh](https://mosh.org/) handles network interruptions better (great for mobile). SSH is more universally compatible. I use both depending on the connection. If you're on WiFi that drops occasionally, Mosh will save you from losing your session.
 
-### Voice Input
+### Talk to Your iPad
 
-[Superwhisper](https://superwhisper.com/) deserves a mention. Voice-to-text on macOS/iOS that's actually good. Dictate your thoughts, Claude interprets them. There's something satisfying about lying on the couch, talking to your iPad, and watching Claude go ham on your codebase.
+[Superwhisper](https://superwhisper.com/) deserves a mention. Voice-to-text on macOS/iOS that's actually good. Lie on the couch, talk to your iPad, watch Claude go ham on your codebase.
 
-### The Devbox Alias
+### Two Keystrokes to Dev Mode
 
-On the host machine, I have an alias to jump straight into the container:
+On the host machine:
 
 ```bash
 alias devbox='docker start -ai devbox'
@@ -205,7 +205,7 @@ SSH into the VPS, type `devbox`, and I'm in. Two keystrokes from anywhere to a f
 
 ## Bonus: VS Code Tunnel
 
-If you still want a GUI escape hatch (no judgment), [VS Code tunnels](https://code.visualstudio.com/docs/remote/tunnels) let you connect VS Code to your VPS from anywhere, including an iPad via [vscode.dev](https://vscode.dev). Run the tunnel on the host (not inside the container), then use VS Code's "Attach to Running Container" feature to get into the devbox with a full editor. Best of both worlds.
+If you still want a GUI escape hatch, [VS Code tunnels](https://code.visualstudio.com/docs/remote/tunnels) let you connect to your VPS from anywhere, including an iPad via [vscode.dev](https://vscode.dev). Run the tunnel on the host (not inside the container), then attach to the running container for a full editor.
 
 ---
 
@@ -235,7 +235,7 @@ Clone your repos into `/workspace`, authenticate with `gh auth login` and `claud
 
 ## What's Next
 
-This is all very fragile but very customisable. The Dockerfile is a starting point. Use Claude or Gemini to refine it for your own needs. I find Gemini is particularly good at long-running conversations where you're copy-pasting whole scripts back and forth.
+The Dockerfile is a starting point. Use Claude or Gemini to refine it for your needs. Gemini is particularly good at long-running conversations where you're copy-pasting whole scripts back and forth.
 
 Things I want to explore:
 
