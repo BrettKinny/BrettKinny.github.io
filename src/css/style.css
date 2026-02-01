@@ -41,6 +41,16 @@ header p {
   margin-top: 4px;
 }
 
+.tagline-link {
+  color: #666;
+  text-decoration: none;
+}
+
+.tagline-link:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
 /* Navigation */
 nav {
   margin-top: 12px;
@@ -199,6 +209,13 @@ a:hover {
   padding: 0;
 }
 
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
 .post-content blockquote {
   border-left: 2px solid #ddd;
   padding-left: 16px;
@@ -220,14 +237,16 @@ footer {
 
 footer .rss-link,
 footer .linkedin-link,
-footer .github-link {
+footer .github-link,
+footer .sws-link {
   color: #999;
   text-decoration: none;
 }
 
 footer .rss-link:hover,
 footer .linkedin-link:hover,
-footer .github-link:hover {
+footer .github-link:hover,
+footer .sws-link:hover {
   color: #0066cc;
   text-decoration: underline;
 }

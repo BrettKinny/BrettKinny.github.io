@@ -10,3 +10,5 @@ This is my personal blog. I built it with Eleventy, a static site generator. Mar
 The design is minimal on purpose. No tracking, no analytics, no bullshit. It loads fast because there's nothing to load.
 
 I'm an automation engineer. I'll write about industrial automation, the tools I use, and whatever else.
+
+![Claude Code running on an iPad, doing competitor research](/images/claude-ipad.png)
