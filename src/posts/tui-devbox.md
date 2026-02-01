@@ -237,4 +237,4 @@ So, I knew what I wanted, and I knew what to do. Sit down with Claude and Gemini
 
 This took a lot more time to get right (and to write this blog post about) than I initially expected. But now I've got a portable, reproducible, disposable development environment that I can access from an iPad on the couch, and Claude can go absolutely ham inside it without risking anything important.
 
-If you build your own version, I'd love to see it. Get in touch. 👊
+If you build your own, I'm all ears for ideas. Get in touch. 👊s
