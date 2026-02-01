@@ -1,5 +1,5 @@
 ---
-title: "Building a TUI Devbox: My Claude-Powered Terminal Development Environment"
+title: "Building a TUI Devbox: A Claude-Powered Terminal Dev Environment on an iPad"
 description: "How I built a portable, reproducible Docker-based terminal development environment packed with modern CLI and TUI tools, designed for Claude Code YOLO mode from an iPad"
 date: 2026-01-28
 layout: post.njk
@@ -9,13 +9,13 @@ layout: post.njk
 
 ![Claude Code running on an iPad](/images/claude-ipad.png)
 
-It's 2026 and there's a new UI on the block. Forget React, Angular, Flutter, React Native, MAUI, Electron, SwiftUI... the next bandwagon to jump on is the oldest of them all—the terminal.
+It's 2026 and there's a new UI on the block. Forget React, Angular, Flutter, React Native, MAUI, Electron, SwiftUI... the next bandwagon to jump on is the oldest of them all: the terminal.
 
 I for one am 100% onboard with this trend, and am systematically working towards replacing every piece of software in my life with a TUI. I've been trying to improve my keyboard-only chops slowly for years, and I hate many modern web apps and UIs. Just give me the terminal. Strap me in, and plug me straight into the matrix.
 
-As a Windows kid, the terminal is not my native environment. Sure, I knew how to use DOS to run Wolf3D, but since then I've grown accustomed to the GUI. That's changing now—fast.
+As a Windows kid, the terminal is not my native environment. Sure, I knew how to use DOS to run Wolf3D, but since then I've grown accustomed to the GUI. That's changing now. Fast.
 
-This mini project started because I wanted to be able to run [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) in YOLO mode from my iPad. The iPad doesn't have a proper shell, so I need to SSH into a server. What I set out to do was create a "TUI devbox"—a Docker container I can connect to from my iPad (or anywhere) that contains all the tools I need to develop software in a terminal environment.
+This mini project started because I wanted to be able to run [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) in YOLO mode from my iPad. The iPad doesn't have a proper shell, so I need to SSH into a server. What I set out to do was create a "TUI devbox", a Docker container I can connect to from my iPad (or anywhere) that contains all the tools I need to develop software in a terminal environment.
 
 This article is for:
 
@@ -25,7 +25,7 @@ This article is for:
 - People that want to dabble in the terminal, just get their toes wet, without having to learn VIM
 - Vibe coders that need a safe sandbox (please run this in a container, not on your local machine)
 
-I'm not going to hold your hand too much—you can ask your favourite LLM about Docker or any acronyms you don't know. That's kind of the point.
+I'm not going to hold your hand too much. You can ask your favourite LLM about Docker or any acronyms you don't know. That's kind of the point.
 
 ---
 
@@ -33,17 +33,17 @@ I'm not going to hold your hand too much—you can ask your favourite LLM about 
 
 Three reasons:
 
-**Reproducible environment.** I can spin this up anywhere—my home [Unraid](https://unraid.net/) server, my [Hostinger](https://www.hostinger.com/) VPS that I picked up cheap during the Black Friday sales, a mate's machine. Same tools, same config, every time.
+**Reproducible environment.** I can spin this up anywhere: my home [Unraid](https://unraid.net/) server, my [Hostinger](https://www.hostinger.com/) VPS that I picked up cheap during the Black Friday sales, a mate's machine. Same tools, same config, every time.
 
-**Keeps the host clean.** The container holds the tools. Your projects live outside the container. Blow away the container whenever you want—your work survives. This is the key mental model: the devbox is disposable, the code is not.
+**Keeps the host clean.** The container holds the tools. Your projects live outside the container. Blow away the container whenever you want and your work survives. This is the key mental model: the devbox is disposable, the code is not.
 
-**AI loves it.** Here's something that took me a while to properly appreciate: Claude, Gemini, Codex—they can read terminal output like it's their first spoken language. Long error logs, dependency conflicts, build failures—just paste the output and the AI will parse it and suggest the next step. An isolated container means you can let the AI go wild without worrying about it hosing your system.
+**AI loves it.** Here's something that took me a while to properly appreciate: Claude, Gemini, Codex... they can read terminal output like it's their first spoken language. Long error logs, dependency conflicts, build failures, just paste the output and the AI will parse it and suggest the next step. An isolated container means you can let the AI go wild without worrying about it hosing your system.
 
 ---
 
 ## The Tools
 
-If I'm going to make a TUI devbox, I wanted the best CLI and TUI tools I could find as of January 2026. All the bells and whistles, but not crazy bloated. Modern luxuries like mouse support—this is not one for the VIM heads.
+If I'm going to make a TUI devbox, I wanted the best CLI and TUI tools I could find as of January 2026. All the bells and whistles, but not crazy bloated. Modern luxuries like mouse support. This is not one for the VIM heads.
 
 ### Base Image
 
@@ -60,10 +60,10 @@ I started with `ubuntu:24.04`. I could probably optimise this, but I wanted some
 | [eza](https://github.com/eza-community/eza) | Rust | `ls` | Icons, colours, git status |
 | [delta](https://github.com/dandavison/delta) | Rust | `diff` | Syntax-highlighting pager for git diffs |
 | [xh](https://github.com/ducaale/xh) | Rust | `curl` | Friendly HTTP client |
-| [gh](https://github.com/cli/cli) | Go | — | GitHub's official CLI |
-| [yq](https://github.com/mikefarah/yq) | Go | — | YAML/JSON/XML processor |
+| [gh](https://github.com/cli/cli) | Go | - | GitHub's official CLI |
+| [yq](https://github.com/mikefarah/yq) | Go | - | YAML/JSON/XML processor |
 | [oh-my-posh](https://github.com/JanDeDobbeleer/oh-my-posh) | Go | boring prompt | Cross-shell prompt theme engine |
-| [jq](https://github.com/jqlang/jq) | C | — | Lightweight JSON processor |
+| [jq](https://github.com/jqlang/jq) | C | - | Lightweight JSON processor |
 
 You'll notice the Rust renaissance here. Basically every classic Unix tool is getting a Rust rewrite that's faster, more user-friendly, and has sane defaults. The Go tools fill in the gaps where Rust hasn't gotten to yet.
 
@@ -98,7 +98,7 @@ docker run -it --name devbox \
   devbox /bin/bash
 ```
 
-The container is the workshop. The `/workspace` mount is where the actual work lives. You can nuke and rebuild the container any time—new tools, different versions, start fresh—and your project files don't care.
+The container is the workshop. The `/workspace` mount is where the actual work lives. You can nuke and rebuild the container any time (new tools, different versions, start fresh) and your project files don't care.
 
 ### BYO SDK
 
@@ -106,7 +106,7 @@ The container is intentionally minimal on language runtimes. Mount your project 
 
 ### The CLAUDE.md File
 
-[Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) reads a `CLAUDE.md` file for project context. I put one at `~/.claude/CLAUDE.md` with a list of all the CLI tools available in the container—their names, what they do, and the aliases I've set up. This means Claude knows it can use `rg` instead of `grep`, `fd` instead of `find`, and so on. Small thing, big difference.
+[Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) reads a `CLAUDE.md` file for project context. I put one at `~/.claude/CLAUDE.md` with a list of all the CLI tools available in the container: their names, what they do, and the aliases I've set up. This means Claude knows it can use `rg` instead of `grep`, `fd` instead of `find`, and so on. Small thing, big difference.
 
 ```markdown
 # Devbox Environment
@@ -168,20 +168,20 @@ This way you don't accidentally commit credentials to a Docker image, and your a
 
 ### Oh My Posh and Fira Code
 
-[Oh My Posh](https://ohmyposh.dev/) gives you a prompt that actually tells you useful things—git branch, exit codes, execution time. It makes the terminal feel alive. Pair it with [Fira Code](https://github.com/tonsky/FiraCode) (a monospaced font with programming ligatures) in your terminal app for the full effect. Yes, aesthetics matter. If you're going to live in the terminal, make it look good.
+[Oh My Posh](https://ohmyposh.dev/) gives you a prompt that actually tells you useful things like git branch, exit codes, and execution time. It makes the terminal feel alive. Pair it with [Fira Code](https://github.com/tonsky/FiraCode) (a monospaced font with programming ligatures) in your terminal app for the full effect. Yes, aesthetics matter. If you're going to live in the terminal, make it look good.
 
 ### Zellij vs Tmux
 
-[Zellij](https://github.com/zellij-org/zellij) is in the devbox as the terminal multiplexer. For the uninitiated: a multiplexer lets you split your terminal into panes, run multiple sessions, and—crucially—detach and reattach. If your SSH connection drops, your work keeps running.
+[Zellij](https://github.com/zellij-org/zellij) is in the devbox as the terminal multiplexer. For the uninitiated: a multiplexer lets you split your terminal into panes, run multiple sessions, and, crucially, detach and reattach. If your SSH connection drops, your work keeps running.
 
-I started with [tmux](https://github.com/tmux/tmux) because that's what everyone recommends. I'm starting to understand why multiplexers make sense, and I'm still working through the keybindings. Zellij won me over because it shows you the keybindings at the bottom of the screen—very helpful when you're learning. Tmux people will tell me I'm wrong. That's fine.
+I started with [tmux](https://github.com/tmux/tmux) because that's what everyone recommends. I'm starting to understand why multiplexers make sense, and I'm still working through the keybindings. Zellij won me over because it shows you the keybindings at the bottom of the screen, which is very helpful when you're learning. Tmux people will tell me I'm wrong. That's fine.
 
 ### iPad Terminal Apps
 
 I use [Blink Shell](https://blink.sh/). It's the best option, but not without quirks:
 
 - Touchscreen text selection works fine
-- No touchscreen scrolling though—use keyboard shortcuts
+- No touchscreen scrolling though, so use keyboard shortcuts
 - Tab completion can be flaky
 - Occasional input lag when typing fast
 
@@ -205,7 +205,7 @@ SSH into the VPS, type `devbox`, and I'm in. Two keystrokes from anywhere to a f
 
 ## Bonus: VS Code Tunnel
 
-If you still want a GUI escape hatch (no judgment), [VS Code tunnels](https://code.visualstudio.com/docs/remote/tunnels) let you connect VS Code to your VPS from anywhere—including an iPad via [vscode.dev](https://vscode.dev). Run the tunnel on the host (not inside the container), then use VS Code's "Attach to Running Container" feature to get into the devbox with a full editor. Best of both worlds.
+If you still want a GUI escape hatch (no judgment), [VS Code tunnels](https://code.visualstudio.com/docs/remote/tunnels) let you connect VS Code to your VPS from anywhere, including an iPad via [vscode.dev](https://vscode.dev). Run the tunnel on the host (not inside the container), then use VS Code's "Attach to Running Container" feature to get into the devbox with a full editor. Best of both worlds.
 
 ---
 
@@ -235,7 +235,7 @@ Clone your repos into `/workspace`, authenticate with `gh auth login` and `claud
 
 ## What's Next
 
-This is all very fragile but very customisable. The Dockerfile is a starting point—use Claude or Gemini to refine it for your own needs. I find Gemini is particularly good at long-running conversations where you're copy-pasting whole scripts back and forth.
+This is all very fragile but very customisable. The Dockerfile is a starting point. Use Claude or Gemini to refine it for your own needs. I find Gemini is particularly good at long-running conversations where you're copy-pasting whole scripts back and forth.
 
 Things I want to explore:
 
@@ -248,7 +248,7 @@ Things I want to explore:
 
 ## Wrapping Up
 
-So, I knew what I wanted, and I knew what to do. Sit down with Claude and Gemini and iterate until this thing was humming. It took 27 iterations of the Dockerfile to get here. There were 10+ weird dependency issues that I resolved through pure vibe coding—pasting error logs into the LLM and following instructions until things stopped breaking.
+So, I knew what I wanted, and I knew what to do. Sit down with Claude and Gemini and iterate until this thing was humming. It took 27 iterations of the Dockerfile to get here. There were 10+ weird dependency issues that I resolved through pure vibe coding, pasting error logs into the LLM and following instructions until things stopped breaking.
 
 This took a lot more time to get right (and to write this blog post about) than I initially expected. But now I've got a portable, reproducible, disposable development environment that I can access from an iPad on the couch, and Claude can go absolutely ham inside it without risking anything important.
 
