@@ -193,7 +193,7 @@ SSH into the VPS, type `devbox`, and I'm in. Two keystrokes from anywhere to a f
 
 ## Wrapping Up
 
-The full Dockerfile, CLAUDE.md, and lazygit config are in a gist:
+The full Dockerfile, CLAUDE.md, and lazygit config are in a [gist](https://gist.github.com/BrettKinny/ad8d36a6afee8b32b1ddf482496ffa02).
 
 ```bash
 git clone https://gist.github.com/BrettKinny/ad8d36a6afee8b32b1ddf482496ffa02 devbox
