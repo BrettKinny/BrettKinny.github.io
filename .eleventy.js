@@ -19,11 +19,13 @@ module.exports = function(eleventyConfig) {
     return new Date(dateObj).getFullYear();
   });
 
-  // Add collection for blog posts
+  // Add collection for blog posts (excludes drafts)
   eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/posts/*.md").sort((a, b) => {
-      return b.date - a.date; // Sort by date descending
-    });
+    return collectionApi.getFilteredByGlob("src/posts/*.md")
+      .filter(post => !post.data.draft)
+      .sort((a, b) => {
+        return b.date - a.date; // Sort by date descending
+      });
   });
 
   // Add RSS feed plugin
