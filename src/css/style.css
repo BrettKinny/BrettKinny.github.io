@@ -67,6 +67,31 @@ nav a:hover {
   color: #1a1a1a;
 }
 
+nav a.active {
+  color: #1a1a1a;
+}
+
+/* Link lists (blogroll, bookshelf) */
+.section-intro {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.link-list {
+  list-style: none;
+}
+
+.link-list li {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.link-list .link-desc {
+  color: #666;
+  font-size: 14px;
+}
+
 /* Main content */
 main {
   min-height: 300px;
